@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#10333d"/><stop offset="1" stop-color="#0b7488"/></linearGradient></defs>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+  <circle cx="365" cy="145" r="55" fill="#f3ead6"/>
+  <path d="M70 331c66-62 119-75 187-33 60 37 112 23 185-48v91c-79 66-150 72-222 27-49-31-89-20-150 39z" fill="#dcecef"/>
+  <path d="M103 277l81-107 58 72 44-58 83 101z" fill="#59bfcc"/>
+  <text x="256" y="438" text-anchor="middle" font-family="-apple-system,Segoe UI,sans-serif" font-size="66" font-weight="900" fill="#fff">LIVE</text>
+</svg>
