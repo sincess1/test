@@ -1,0 +1,17 @@
+{
+  "name": "Янъян — Сокчо · живой маршрут",
+  "short_name": "Янъян Live",
+  "description": "Живой маршрут 1–2 августа 2026 с корейским временем и пересчётом по факту",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#EDF4F4",
+  "theme_color": "#10333D",
+  "lang": "ru",
+  "icons": [
+    {"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"},
+    {"src": "./apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any"}
+  ]
+}
