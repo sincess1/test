@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10333d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Янъян live">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Янъян — живой маршрут</title>
+<style>
+:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#edf4f4;color:#10333d;font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.box{width:min(440px,calc(100% - 28px));padding:24px;border-radius:20px;background:#fff;border:1px solid #d4e2e5;box-shadow:0 12px 34px rgba(16,51,61,.12)}h1{margin:0 0 8px;font-size:24px}p{margin:0;color:#587078}.bar{height:6px;margin-top:18px;border-radius:99px;overflow:hidden;background:#dcecef}.bar:before{content:"";display:block;width:45%;height:100%;background:#0b7488;animation:load 1s ease-in-out infinite alternate}@keyframes load{to{transform:translateX(125%)}}.err{color:#9a3218;margin-top:12px;white-space:pre-wrap}@media(prefers-color-scheme:dark){body{background:#0b1b21;color:#edf5f6}.box{background:#132a32;border-color:#25434b}p{color:#9db4ba}}
+</style>
+</head>
+<body>
+<div class="box"><h1>Янъян — Сокчо</h1><p id="status">Загружаю живой маршрут…</p><div class="bar"></div><div class="err" id="error"></div></div>
+<script>
+(async()=>{
+  try{
+    if(typeof DecompressionStream==='undefined')throw new Error('Браузер не поддерживает распаковку. Откройте ссылку в актуальном Safari.');
+    const encoded=(await fetch('./index.html.gz.b64')).text();
+    const b64=(await encoded).trim();
+    const bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));
+    const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+    const html=await new Response(stream).text();
+    document.open();document.write(html);document.close();
+  }catch(error){
+    document.getElementById('status').textContent='Не удалось открыть приложение.';
+    document.getElementById('error').textContent=String(error&&error.message||error);
+  }
+})();
+</script>
+</body>
+</html>
