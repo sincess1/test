@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -47,7 +47,18 @@ jobs:
           grep -q '만석닭강정 시장1호점' _site/index.html
           grep -q '갯배선착장' _site/index.html
 
+      - name: Publish verified files to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./_site
+          force_orphan: true
+          enable_jekyll: false
+          full_commit_message: Publish Yangyang Live v8
+
       - name: Configure Pages
+        continue-on-error: true
         uses: actions/configure-pages@v5
         with:
           enablement: true
@@ -59,4 +70,5 @@ jobs:
 
       - name: Deploy
         id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v4
