@@ -20,9 +20,18 @@
 (async()=>{
   try{
     if(typeof DecompressionStream==='undefined')throw new Error('Браузер не поддерживает распаковку. Откройте ссылку в актуальном Safari.');
-    const encoded=(await fetch('./index.html.gz.b64')).text();
-    const b64=(await encoded).trim();
-    const bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));
+    const status=document.getElementById('status');
+    const names=Array.from({length:10},(_,i)=>`./full/part-${String(i).padStart(2,'0')}.txt`);
+    let loaded=0;
+    const chunks=await Promise.all(names.map(async name=>{
+      const response=await fetch(name,{cache:'no-store'});
+      if(!response.ok)throw new Error(`Не загрузилась часть маршрута: ${name}`);
+      const text=(await response.text()).trim();
+      loaded+=1;
+      status.textContent=`Загружаю живой маршрут: ${loaded} из ${names.length}`;
+      return text;
+    }));
+    const bytes=Uint8Array.from(atob(chunks.join('')),c=>c.charCodeAt(0));
     const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
     const html=await new Response(stream).text();
     document.open();document.write(html);document.close();
