@@ -1,5 +1,6 @@
-const CACHE='yangyang-live-v7';
-const SHELL=['./','./index.html','./index.html.gz.b64','./manifest.webmanifest','./icon.svg'];
+const CACHE='yangyang-live-v9';
+const PARTS=Array.from({length:10},(_,i)=>`./full/part-${String(i).padStart(2,'0')}.txt`);
+const SHELL=['./index.html','./manifest.webmanifest','./icon.svg',...PARTS];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting()));
 });
