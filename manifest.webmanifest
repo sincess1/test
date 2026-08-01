@@ -1,0 +1,15 @@
+{
+  "name": "Янъян — Сокчо · живой план",
+  "short_name": "Янъян Live",
+  "description": "Живой маршрут 1–2 августа с корейским временем и пересчётом графика",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#EDF4F4",
+  "theme_color": "#10333D",
+  "lang": "ru",
+  "icons": [
+    {"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}
