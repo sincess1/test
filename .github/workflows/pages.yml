@@ -30,8 +30,9 @@ jobs:
           mkdir -p _site
           base64 --decode site/index.html.gz.b64 | gzip --decompress > _site/index.html
           base64 --decode site/apple-touch-icon.png.b64 > _site/apple-touch-icon.png
-          cp site/manifest.webmanifest site/sw.js site/icon.svg _site/
+          cp site/index.html.gz.b64 site/manifest.webmanifest site/sw.js site/icon.svg _site/
           test -s _site/index.html
+          test -s _site/index.html.gz.b64
           test -s _site/apple-touch-icon.png
       - name: Configure Pages
         uses: actions/configure-pages@v5
